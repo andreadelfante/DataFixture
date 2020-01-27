@@ -21,7 +21,7 @@ public struct FixtureBuilder<T> {
 }
 
 extension FixtureBuilder {
-    
+
     /// Create a single object from fixture
     /// - Parameter attributes: a dictionary to override fields during generating the object
     /// - Returns: the object
@@ -37,7 +37,7 @@ extension FixtureBuilder {
         return (0..<number)
             .map { _ in fixture.fixture(faker: faker, attributes: attributes, resolver: resolver) }
     }
-    
+
     /// Create a JSON Object from fixture. Please be sure to define `jsonFixtureClosure` or to implement `JSONFixture`, otherwise this function produces an empty JSON Object.
     /// - Parameter attributes: a dictionary to override fields during generating the json object
     /// - Returns: a JSON Object
@@ -70,7 +70,7 @@ extension FixtureBuilder {
     public func createJSON<S: Sequence>(from objects: S) -> [[String: Any]] where S.Element == T {
         return objects.map { fixture.jsonFixture(object: $0, resolver: resolver) }
     }
-    
+
     /// Create a tuple of object and its JSONObject. Please be sure to define `jsonFixtureClosure` or to implement `JSONFixture`, otherwise this function produces an empty JSON Object.
     /// - Parameter attributes: a dictionary to override fields during generating the objects and its JSON object.
     /// - Returns: a tuple of object and its JSONObject.

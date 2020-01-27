@@ -36,3 +36,5 @@ Carthage/Build
 #
 Pods/
 Example/DataFixture.xcworkspace
+
+fastlane/report.xml
