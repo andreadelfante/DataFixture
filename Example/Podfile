@@ -1,6 +1,7 @@
 use_frameworks!
 target 'DataFixture_Tests' do
   pod 'DataFixture', :path => '../'
-  
-  
+  pod 'DataFixture/RealmSeeder', :path => '../'  
+
+  pod 'SwiftLint'
 end

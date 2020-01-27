@@ -1,0 +1,18 @@
+device "iPhone 11"
+
+workspace "Example/DataFixture.xcworkspace"
+scheme "DataFixture-Example"
+
+code_coverage true
+skip_slack true
+
+derived_data_path "./build"
+
+for_lane :test_debug do
+  configuration "Debug"
+end
+
+for_lane :test_release do
+  configuration "Release"
+end
+

@@ -1,0 +1,26 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/andrea/Desktop/DataFixture/DataFixture/Classes/Fixtures/Fixture.swift",
+      "line": 17,
+      "symbol": "Fixture.Object",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/andrea/Desktop/DataFixture/DataFixture/Classes/Misc/FixtureAttributes.swift",
+      "line": 12,
+      "symbol": "FixtureAttributes.Key",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/andrea/Desktop/DataFixture/DataFixture/Classes/Misc/FixtureAttributes.swift",
+      "line": 13,
+      "symbol": "FixtureAttributes.Value",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/andrea/Desktop/DataFixture"
+}

@@ -1,0 +1,43 @@
+PODS:
+  - DataFixture (0.1.0):
+    - DataFixture/Basic (= 0.1.0)
+    - Fakery
+  - DataFixture/Basic (0.1.0):
+    - Fakery
+  - DataFixture/RealmSeeder (0.1.0):
+    - Fakery
+    - RealmSwift
+  - Fakery (4.1.1)
+  - Realm (4.2.0):
+    - Realm/Headers (= 4.2.0)
+  - Realm/Headers (4.2.0)
+  - RealmSwift (4.2.0):
+    - Realm (= 4.2.0)
+  - SwiftLint (0.38.0)
+
+DEPENDENCIES:
+  - DataFixture (from `../`)
+  - DataFixture/RealmSeeder (from `../`)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - Fakery
+    - Realm
+    - RealmSwift
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  DataFixture:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DataFixture: c467571e2b27dabcd783fb176c8592f7b29f2f6d
+  Fakery: d3380c4aa1efe7631c0831d7e26aa9db4491f014
+  Realm: 24f62307291e35ca9ba69f4d5e7214142543b12d
+  RealmSwift: eec89a12ff5ff09f365519c64591ab297acbbb40
+  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+
+PODFILE CHECKSUM: 283e6f99982a884fde9508e5ed8aaad83883805f
+
+COCOAPODS: 1.8.4

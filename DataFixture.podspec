@@ -1,42 +1,35 @@
-#
-# Be sure to run `pod lib lint DataFixture.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = 'DataFixture'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of DataFixture.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+  s.version          = '1.0.0'
+  s.summary          = 'Creation of data model easily, with no headache.'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Creation of data model easily, with no headache. DataFixture is onvenient way to generate new data for testing / seeding your Realm Database.
                        DESC
 
   s.homepage         = 'https://github.com/andreadelfante/DataFixture'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'andreadelfante' => 'andreadelfante94@gmail.com' }
   s.source           = { :git => 'https://github.com/andreadelfante/DataFixture.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/aj_razor'
+
+  s.swift_version = '5.1'
+
+  s.cocoapods_version = '> 0.39.0'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'DataFixture/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'DataFixture' => ['DataFixture/Assets/*.png']
-  # }
+  s.dependency 'Fakery'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.default_subspec = 'Basic'
+
+  s.subspec 'Basic' do |b|
+    b.source_files = [ 'DataFixture/Classes/**/*' ]
+  end
+
+  s.subspec 'RealmSeeder' do |r|
+    r.source_files = [ 'DataFixture-RealmSeeder/Classes/**/*' ]
+
+    r.dependency 'RealmSwift'
+  end
 end

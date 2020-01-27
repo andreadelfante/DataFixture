@@ -1,0 +1,15 @@
+author: andreadelfante
+author_url: https://twitter.com/a_delfante
+github_url: https://github.com/andreadelfante/DataFixture
+root_url: https://andreadelfante.github.io/DataFixture
+module: DataFixture
+output: docs
+theme: fullwidth
+clean: true
+
+xcodebuild_arguments:
+    - "-workspace"
+    - "Example/DataFixture.xcworkspace"
+    - "-scheme"
+    - "DataFixture-Example"
+
