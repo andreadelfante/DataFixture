@@ -11,7 +11,7 @@ Creation of data model easily, with no headache. DataFixture is onvenient way to
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'andreadelfante' => 'andreadelfante94@gmail.com' }
   s.source           = { :git => 'https://github.com/andreadelfante/DataFixture.git', :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/aj_razor'
+  s.social_media_url = 'https://twitter.com/a_delfante'
 
   s.swift_version = '5.1'
 
