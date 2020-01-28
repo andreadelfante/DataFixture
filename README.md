@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/DataFixture.svg?style=flat)](https://cocoapods.org/pods/DataFixture)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
-Creation of data model easily, with no headache. DataFixture is onvenient way to generate new data for testing / seeding your Realm Database.
+Create data models easily, with no headache. DataFixture is a convenient way to generate new data for testing / seeding your Realm Database.
 
 ## Installation
 ### Cocoapods
@@ -39,7 +39,7 @@ factory.define(for: Company.self, { (faker, attributes, resolver) -> Company in
 }
 ```
 
-2. Then you can call a fixture to build fake model.
+2. Then you can call a fixture to build one or more fake models.
 ```swift
 // This create a single object of type Company
 factory.resolve(Company.self).create()
@@ -49,7 +49,7 @@ factory.resolve(Company.self).create(10)
 ```
 
 ### Advanced
-1. Create a struct to define a fixture.
+1. Create a `struct` to define a fixture.
 ```swift
 import DataFixture
 
@@ -96,7 +96,7 @@ struct PersonFixture: JSONFixture { // `Fixture` to define only a fixture model.
 }
 ```
 
-2. Override FixtureFactory and define associations in init.
+2. Override FixtureFactory and define associations in `init()`.
 ```swift
 import DataFixture
 
@@ -109,7 +109,7 @@ class FixtureFactory: DataFixture.FixtureFactory {
 }
 ```
 
-3. Call the fixture with the factory.
+3. Call the fixture with `factory`.
 ```swift
 factory.resolve(Person.self).create()
 factory.resolve(Person.self).create(PersonFixtureAttributes(firstName: "Luke")) // Create a person with firstName = Luke
@@ -120,8 +120,8 @@ factory.resolve(Person.self).create(3, PersonFixtureAttributes(firstName: "Luke"
 DataFixture uses [Fakery](https://github.com/vadymmarkov/Fakery) to generate fake data. Changing the locale of Fakery is quite simple: set the language using `DataFixtureConfig.locale = "<locale>"`. All supported locales are [here](https://github.com/vadymmarkov/Fakery/tree/master/Resources/Locales).
 
 ## RealmSeeder
-This submodule can seeding easily some data in [Realm](https://github.com/realm/realm-cocoa) Database, using Seeder.
-First of all, define in your Podfile `pod 'DataFixture/RealmSeeder'`. Then create a new struct to define a RealmSeeder.
+This submodule can seed some data easily in [Realm](https://github.com/realm/realm-cocoa) Database, using Seeder.
+First of all, define it in your Podfile `pod 'DataFixture/RealmSeeder'`. Then create a new `struct` to define a RealmSeeder.
 ```swift
 import DataFixture
 
@@ -137,13 +137,13 @@ struct ExampleSeeder: RealmSeeder {
 }
 ```
 
-To run the `ExampleSeeder` just call **seed** function on Realm instance. This function automatically launch a transaction if needed.
+To run the `ExampleSeeder` just call the **seed** function on a Realm instance. This function automatically starts a transaction if needed.
 ```swift
 try realm.seed(ExampleSeeder.self)
 ```
 
 ## Documentation
-Click [here](https://andreadelfante.github.io/DataFixture) to show the complete DataFixture API documentation.
+Click [here](https://andreadelfante.github.io/DataFixture) to read the complete DataFixture API documentation.
 
 ## Contributing
 DataFixture is an open source project, so feel free to contribute.
