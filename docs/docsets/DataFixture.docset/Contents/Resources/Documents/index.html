@@ -125,23 +125,153 @@
 <p><a href="https://travis-ci.org/andreadelfante/DataFixture"><img src="https://img.shields.io/travis/andreadelfante/DataFixture.svg?style=flat" alt="CI Status"></a>
 <a href="https://cocoapods.org/pods/DataFixture"><img src="https://img.shields.io/cocoapods/v/DataFixture.svg?style=flat" alt="Version"></a>
 <a href="https://cocoapods.org/pods/DataFixture"><img src="https://img.shields.io/cocoapods/l/DataFixture.svg?style=flat" alt="License"></a>
-<a href="https://cocoapods.org/pods/DataFixture"><img src="https://img.shields.io/cocoapods/p/DataFixture.svg?style=flat" alt="Platform"></a></p>
-<h2 id='example' class='heading'>Example</h2>
+<a href="https://cocoapods.org/pods/DataFixture"><img src="https://img.shields.io/cocoapods/p/DataFixture.svg?style=flat" alt="Platform"></a>
+<a href="https://github.com/dwyl/esta/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a></p>
 
-<p>To run the example project, clone the repo, and run <code>pod install</code> from the Example directory first.</p>
-<h2 id='requirements' class='heading'>Requirements</h2>
+<p>Create data models easily, with no headache. DataFixture is a convenient way to generate new data for testing / seeding your Realm Database.</p>
 <h2 id='installation' class='heading'>Installation</h2>
+<h3 id='cocoapods' class='heading'>Cocoapods</h3>
 
-<p>DataFixture is available through <a href="https://cocoapods.org">CocoaPods</a>. To install
-it, simply add the following line to your Podfile:</p>
-<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'DataFixture'</span>
+<blockquote>
+<p>CocoaPods 0.39.0+ is required to build this library
+To install DataFixture, simply add in your Podfile <code>pod &#39;DataFixture&#39;</code> and run <code>pod install</code></p>
+</blockquote>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='basic' class='heading'>Basic</h3>
+
+<ol>
+<li>Create a new file to define fixtures for each model.
+&ldquo;`swift
+import DataFixture</li>
+</ol>
+
+<p>let factory = FixtureFactory()</p>
+
+<p>// This is to define only a fixture for <code>Company</code> model
+factory.define(for: Company.self, { (faker, attributes, resolver) -&gt; Company in
+    return Company(name: faker.company.name(),
+                   employees: resolver.resolve(Person.self).create(10))
+})</p>
+
+<p>// This is to define only a fixture for <code>Company</code> model and its relative JSON Object, useful to fake network JSON responses.
+factory.define(for: Company.self, { (faker, attributes, resolver) -&gt; Company in
+    Company(name: faker.company.name(),
+            employees: resolver.resolve(Person.self).create(10))
+}) { (object, resolver) -&gt; [String : Any] in
+    return [
+        &quot;name&rdquo;: object.name,
+        &ldquo;employees&rdquo;: resolver.resolve(Person.self).createJSON(from: object.employees)
+    ]
+}</p>
+<pre class="highlight plaintext"><code>
+2. Then you can call a fixture to build one or more fake models.
+```swift
+// This create a single object of type Company
+factory.resolve(Company.self).create()
+
+// This create 10 objects of type Company
+factory.resolve(Company.self).create(10)
 </code></pre>
-<h2 id='author' class='heading'>Author</h2>
+<h3 id='advanced' class='heading'>Advanced</h3>
 
-<p>andreadelfante, <a href="mailto:andreadelfante94@gmail.com">andreadelfante94@gmail.com</a></p>
-<h2 id='license' class='heading'>License</h2>
+<ol>
+<li>Create a <code>struct</code> to define a fixture.
+&ldquo;`swift
+import DataFixture</li>
+</ol>
 
-<p>DataFixture is available under the MIT license. See the LICENSE file for more info.</p>
+<p>class PersonFixtureAttributes: FixtureAttributes { // Define this class if you want to override fields without guessing keys
+    fileprivate static let firstNameKey = &quot;firstName&rdquo;
+    fileprivate static let lastNameKey = &ldquo;lastName&rdquo;
+    fileprivate static let birthdayKey = &ldquo;birthday&rdquo;
+    fileprivate static let dogsKey = &ldquo;dogs&rdquo;</p>
+<pre class="highlight plaintext"><code>init(firstName: String? = nil, lastName: String? = nil, birthday: Date? = nil, dogs: [Dog]? = nil) {
+    super.init(attributes: [
+        PersonFixtureAttributes.firstNameKey: firstName as Any,
+        PersonFixtureAttributes.lastNameKey: lastName as Any,
+        PersonFixtureAttributes.birthdayKey: birthday as Any,
+        PersonFixtureAttributes.dogsKey: dogs as Any
+    ])
+}
+</code></pre>
+
+<p>}</p>
+
+<p>struct PersonFixture: JSONFixture { // <code><a href="Protocols/Fixture.html">Fixture</a></code> to define only a fixture model. For fixtured JSONObject you must use <code><a href="Protocols/JSONFixture.html">JSONFixture</a></code>.
+    typealias Object = Person</p>
+<pre class="highlight plaintext"><code>func fixture(faker: Faker, attributes: FixtureAttributes, resolver: FixtureResolver) -&gt; Person {
+    return Person(
+        firstName: attributes[PersonFixtureAttributes.firstNameKey, faker.name.firstName()],
+        lastName: attributes[PersonFixtureAttributes.lastNameKey, faker.name.lastName()],
+        birthday: attributes[PersonFixtureAttributes.birthdayKey, faker.date.forward(10)],
+        dogs: attributes[PersonFixtureAttributes.dogsKey, resolver.resolve(Dog.self).create(10)]
+    ])
+}
+
+func jsonFixture(object: Person, resolver: FixtureResolver) -&gt; [String : Any] {
+    return [
+        "firstName": object.firstName,
+        "lastName": object.lastName,
+        "birthday": object.birthday?.timeIntervalSince1970 as Any,
+        "dogs": resolver.resolve(Dog.self).createJSON(from: object.dogs)
+    ]
+}
+</code></pre>
+
+<p>}</p>
+<pre class="highlight plaintext"><code>
+2. Override FixtureFactory and define associations in `init()`.
+```swift
+import DataFixture
+
+class FixtureFactory: DataFixture.FixtureFactory {
+    override init() {
+        super.init()
+
+        define(Person.self, fixture: PersonFixture.self)
+    }
+}
+</code></pre>
+
+<ol>
+<li>Call the fixture with <code>factory</code>.
+<code>swift
+factory.resolve(Person.self).create()
+factory.resolve(Person.self).create(PersonFixtureAttributes(firstName: &quot;Luke&quot;)) // Create a person with firstName = Luke
+factory.resolve(Person.self).create(3, PersonFixtureAttributes(firstName: &quot;Luke&quot;)) // Create 3 persons with firstName = Luke
+</code></li>
+</ol>
+<h3 id='locale-support' class='heading'>Locale support</h3>
+
+<p>DataFixture uses <a href="https://github.com/vadymmarkov/Fakery">Fakery</a> to generate fake data. Changing the locale of Fakery is quite simple: set the language using <code>DataFixtureConfig.locale = &quot;&lt;locale&gt;&quot;</code>. All supported locales are <a href="https://github.com/vadymmarkov/Fakery/tree/master/Resources/Locales">here</a>.</p>
+<h2 id='realmseeder' class='heading'>RealmSeeder</h2>
+
+<p>This submodule can seed some data easily in <a href="https://github.com/realm/realm-cocoa">Realm</a> Database, using Seeder.
+First of all, define it in your Podfile <code>pod &#39;DataFixture/RealmSeeder&#39;</code>. Then create a new <code>struct</code> to define a RealmSeeder.</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">DataFixture</span>
+
+<span class="kd">struct</span> <span class="kt">ExampleSeeder</span><span class="p">:</span> <span class="kt">RealmSeeder</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">run</span><span class="p">(</span><span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+        <span class="c1">// Put here your database population</span>
+
+        <span class="n">realm</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="kt">Person</span><span class="p">(</span><span class="nv">firstName</span><span class="p">:</span> <span class="s">"Luke"</span><span class="p">),</span> <span class="nv">update</span><span class="p">:</span> <span class="o">.</span><span class="n">all</span><span class="p">)</span> <span class="c1">// You can simply create an object and then add in Realm instance.</span>
+        <span class="n">realm</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">factory</span><span class="o">.</span><span class="nf">resolve</span><span class="p">(</span><span class="kt">Dog</span><span class="o">.</span><span class="k">self</span><span class="p">)</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="nv">update</span><span class="p">:</span> <span class="o">.</span><span class="n">all</span><span class="p">)</span> <span class="c1">// You can easily create 10 fake dogs and then add in Realm instance.</span>
+
+        <span class="k">try</span> <span class="n">realm</span><span class="o">.</span><span class="nf">seed</span><span class="p">(</span><span class="kt">AnotherSeeder</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="kt">AnotherAnotherSeeder</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="c1">// To call another seed, please use this function to automatic handling transactions.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>To run the <code>ExampleSeeder</code> just call the <strong>seed</strong> function on a Realm instance. This function automatically starts a transaction if needed.</p>
+<pre class="highlight swift"><code><span class="k">try</span> <span class="n">realm</span><span class="o">.</span><span class="nf">seed</span><span class="p">(</span><span class="kt">ExampleSeeder</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+</code></pre>
+<h2 id='documentation' class='heading'>Documentation</h2>
+
+<p>Click <a href="https://andreadelfante.github.io/DataFixture/index.html">here</a> to read the complete DataFixture API documentation.</p>
+<h2 id='contributing' class='heading'>Contributing</h2>
+
+<p>DataFixture is an open source project, so feel free to contribute.
+You can open an issue for problems or suggestions, and you can propose your own fixes by opening a pull request with the changes.</p>
 
           </div>
         </section>
@@ -150,7 +280,7 @@ it, simply add the following line to your Podfile:</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://twitter.com/a_delfante" target="_blank" rel="external">andreadelfante</a>. All rights reserved. (Last updated: 2020-01-27)</p>
+      <p>&copy; 2020 <a class="link" href="https://twitter.com/a_delfante" target="_blank" rel="external">andreadelfante</a>. All rights reserved. (Last updated: 2020-01-28)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
