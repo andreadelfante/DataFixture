@@ -72,26 +72,22 @@ class PersonFixtureAttributes: FixtureAttributes { // Define this class if you w
 struct PersonFixture: JSONFixture { // `Fixture` to define only a fixture model. For fixtured JSONObject you must use `JSONFixture`.
     typealias Object = Person
     
-    struct PersonFixture: JSONFixture {
-        typealias Object = Person
-        
-        func fixture(faker: Faker, attributes: FixtureAttributes, resolver: FixtureResolver) -> Person {
-            return Person(
-                firstName: attributes[PersonFixtureAttributes.firstNameKey, faker.name.firstName()],
-                lastName: attributes[PersonFixtureAttributes.lastNameKey, faker.name.lastName()],
-                birthday: attributes[PersonFixtureAttributes.birthdayKey, faker.date.forward(10)],
-                dogs: attributes[PersonFixtureAttributes.dogsKey, resolver.resolve(Dog.self).create(10)]
-            ])
-        }
-        
-        func jsonFixture(object: Person, resolver: FixtureResolver) -> [String : Any] {
-            return [
-                "firstName": object.firstName,
-                "lastName": object.lastName,
-                "birthday": object.birthday?.timeIntervalSince1970 as Any,
-                "dogs": resolver.resolve(Dog.self).createJSON(from: object.dogs)
-            ]
-        }
+    func fixture(faker: Faker, attributes: FixtureAttributes, resolver: FixtureResolver) -> Person {
+        return Person(
+            firstName: attributes[PersonFixtureAttributes.firstNameKey, faker.name.firstName()],
+            lastName: attributes[PersonFixtureAttributes.lastNameKey, faker.name.lastName()],
+            birthday: attributes[PersonFixtureAttributes.birthdayKey, faker.date.forward(10)],
+            dogs: attributes[PersonFixtureAttributes.dogsKey, resolver.resolve(Dog.self).create(10)]
+        ])
+    }
+    
+    func jsonFixture(object: Person, resolver: FixtureResolver) -> [String : Any] {
+        return [
+            "firstName": object.firstName,
+            "lastName": object.lastName,
+            "birthday": object.birthday?.timeIntervalSince1970 as Any,
+            "dogs": resolver.resolve(Dog.self).createJSON(from: object.dogs)
+        ]
     }
 }
 ```
