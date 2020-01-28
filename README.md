@@ -139,7 +139,7 @@ try realm.seed(ExampleSeeder.self)
 ```
 
 ## Documentation
-Click [here](https://andreadelfante.github.io/DataFixture) to read the complete DataFixture API documentation.
+Click [here](https://andreadelfante.github.io/DataFixture/index.html) to read the complete DataFixture API documentation.
 
 ## Contributing
 DataFixture is an open source project, so feel free to contribute.
