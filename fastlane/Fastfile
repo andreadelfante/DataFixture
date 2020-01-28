@@ -101,7 +101,8 @@ platform :ios do
     git_add(path: "CHANGELOG.md")
     git_commit(
       path: "CHANGELOG.md",
-      message: "Update CHANGELOG.md for version #{version}"
+      message: "Update CHANGELOG.md for version #{version}",
+      allow_nothing_to_commit: true
     )
 
     puts "Changelog for version #{version} ready!"
