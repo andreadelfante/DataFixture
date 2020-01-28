@@ -56,6 +56,11 @@ Run tests for DataFixture (Release config)
 fastlane ios deploy
 ```
 Deploy a new version
+### ios changelog
+```
+fastlane ios changelog
+```
+Check changelog
 ### ios doc
 ```
 fastlane ios doc

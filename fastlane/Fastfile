@@ -83,9 +83,28 @@ platform :ios do
 
     pull_master
 
+    changelog(version: version)
     doc
     publish_doc(version: version)
     publish_podspec(version: version)
+  end
+
+  desc "Check changelog"
+  lane :changelog do |options|
+    version = options[:version]
+
+    is_write_changelog = UI.confirm "Did you write the changelog for version #{version}?"
+    if !is_write_changelog
+      UI.user_error!("Please write changelog for version #{version} first!")
+    end
+
+    git_add(path: "CHANGELOG.md")
+    git_commit(
+      path: "CHANGELOG.md",
+      message: "Update CHANGELOG.md for version #{version}"
+    )
+
+    puts "Changelog for version #{version} ready!"
   end
 
   desc "Create documentation"
@@ -123,8 +142,8 @@ platform :ios do
     version = options[:version]
 
     ensure_git_branch
-    add_git_tag(tag: version)
-    push_git_tags
+    add_git_tag(tag: version, force: true)
+    push_git_tags(force: true)
     
     puts "Ready to publish a podspec with version #{version}"
 
