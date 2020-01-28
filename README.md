@@ -11,6 +11,7 @@ Create data models easily, with no headache. DataFixture is a convenient way to 
 ## Installation
 ### Cocoapods
 > CocoaPods 0.39.0+ is required to build this library
+
 To install DataFixture, simply add in your Podfile `pod 'DataFixture'` and run `pod install`
 
 ## Usage
