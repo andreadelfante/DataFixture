@@ -27,4 +27,21 @@ extension FixtureResolver {
     public func resolve<T>(_ objectType: T.Type) -> FixtureBuilder<T> {
         return resolve(objectType, name: DataFixtureConfig.defaultName)
     }
+    
+    /// Resolve a Fixture related to the object type
+    /// - Parameters:
+    ///   - objectType: The object type.
+    ///   - name: The name of the fixture.
+    /// - Returns: a fixture builder of the specified object type
+    public subscript<T>(_ objectType: T.Type, name: AnyHashable) -> FixtureBuilder<T> {
+        return resolve(objectType, name: name)
+    }
+    
+    /// Resolve a Fixture related to the object type
+    /// - Parameters:
+    ///   - objectType: The object type.
+    /// - Returns: a fixture builder of the specified object type
+    public subscript<T>(_ objectType: T.Type) -> FixtureBuilder<T> {
+        return resolve(objectType)
+    }
 }

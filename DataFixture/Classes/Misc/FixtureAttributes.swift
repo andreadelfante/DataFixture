@@ -23,21 +23,21 @@ open class FixtureAttributes {
     /// Get an attributes with its key
     /// - Parameters:
     ///   - key: The key associated with the value
-    /// - Returns: a value or nil if not presents.
+    /// - Returns: a value or nil if not presents or nil as value.
     public final subscript<T>(_ key: Key) -> T? {
-        return self[key, nil]
+        return attributes[key] as? T
     }
-
+    
     /// Get an attributes with its key
     /// - Parameters:
     ///   - key: The key associated with the value
     ///   - defaultValue: A default value
-    /// - Returns: a value or default value if not presents.
+    /// - Returns: a value or default value if not presents or nil as value.
     public final subscript<T>(_ key: Key, _ defaultValue: @autoclosure (() -> T?)) -> T? {
-        guard let value = attributes[key] else {
+        guard let value = attributes[key] as? T else {
             return defaultValue()
         }
-        return value as? T
+        return value
     }
 }
 
@@ -46,5 +46,11 @@ extension FixtureAttributes: Sequence {
 
     public __consuming func makeIterator() -> Dictionary<AnyHashable, Any>.Iterator {
         return attributes.makeIterator()
+    }
+}
+
+extension FixtureAttributes: CustomStringConvertible {
+    public var description: String {
+        return attributes.description
     }
 }

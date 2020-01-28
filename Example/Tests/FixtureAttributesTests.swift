@@ -12,6 +12,7 @@ import DataFixture
 class FixtureAttributesTests: XCTestCase {
     private let key = "key"
     private let unexistedKey = "unexisted_key"
+    private let existedKeyWithNil = "existed_key_with_nil"
     private let value = 1
     private let defaultValue = -1
     private var attributes: FixtureAttributes!
@@ -19,19 +20,36 @@ class FixtureAttributesTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        attributes = FixtureAttributes(attributes: [key: value])
+        let nilString: Int? = nil
+        attributes = FixtureAttributes(attributes: [
+            key: value,
+            existedKeyWithNil: nilString as Any
+        ])
     }
     
     func testGetAttribute() {
         XCTAssertEqual(attributes[key], 1)
-        XCTAssertNil(attributes[unexistedKey])
         XCTAssertEqual(attributes[key, nil], 1)
-        XCTAssertNil(attributes[unexistedKey, nil])
+        
+        var unexisted: String? = attributes[unexistedKey]
+        XCTAssertNil(unexisted)
+        
+        unexisted = attributes[unexistedKey, nil]
+        XCTAssertNil(unexisted)
+        
+        unexisted = attributes[existedKeyWithNil]
+        XCTAssertNil(unexisted)
+        
+        unexisted = attributes[existedKeyWithNil, nil]
+        XCTAssertNil(unexisted)
     }
     
     func testGetAttributeWithDefaultValue() {
         XCTAssertEqual(attributes[key, defaultValue], value)
         XCTAssertEqual(attributes[unexistedKey, defaultValue], defaultValue)
-        XCTAssertNil(attributes[unexistedKey])
+        XCTAssertEqual(attributes[existedKeyWithNil, 1], 1)
+        
+        let unexisted: String? = attributes[unexistedKey]
+        XCTAssertNil(unexisted)
     }
 }
