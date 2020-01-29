@@ -43,10 +43,10 @@ factory.define(for: Company.self, { (faker, attributes, resolver) -> Company in
 2. Then you can call a fixture to build one or more fake models.
 ```swift
 // This create a single object of type Company
-factory.resolve(Company.self).create()
+factory.resolve(Company.self).create() // or `factory[Company.self].create()`
 
 // This create 10 objects of type Company
-factory.resolve(Company.self).create(10)
+factory.resolve(Company.self).create(10) // or `factory[Company.self].create(10)`
 ```
 
 ### Advanced
