@@ -14,6 +14,14 @@ Create data models easily, with no headache. DataFixture is a convenient way to 
 
 To install DataFixture, simply add in your Podfile `pod 'DataFixture'` and run `pod install`
 
+### Swift Package Manager
+
+Simply add a package dependency to your Xcode project, select File > Swift Packages > Add Package Dependency and enter
+this repository URL:
+```
+https://github.com/andreadelfante/DataFixture.git
+```
+
 ## Usage
 ### Basic
 1. Create a new file to define fixtures for each model.
