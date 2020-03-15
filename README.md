@@ -1,6 +1,6 @@
 # DataFixture
 
-[![CI Status](https://img.shields.io/travis/andreadelfante/DataFixture.svg?style=flat)](https://travis-ci.org/andreadelfante/DataFixture)
+![SwiftEssentialsKit CI](https://github.com/andreadelfante/DataFixture/workflows/DataFixture%20CI/badge.svg)
 [![Version](https://img.shields.io/cocoapods/v/DataFixture.svg?style=flat)](https://cocoapods.org/pods/DataFixture)
 [![License](https://img.shields.io/cocoapods/l/DataFixture.svg?style=flat)](https://cocoapods.org/pods/DataFixture)
 [![Platform](https://img.shields.io/cocoapods/p/DataFixture.svg?style=flat)](https://cocoapods.org/pods/DataFixture)
