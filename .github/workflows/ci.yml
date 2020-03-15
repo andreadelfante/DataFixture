@@ -1,0 +1,62 @@
+name: "SwiftEssentialsKit CI"
+on: [push, pull_request]
+
+jobs:
+  lint_podspec:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Gem update system
+        run: gem update --system
+      - name: Gem install bundler
+        run: gem install bundler --user-install --no-document --quiet
+      - name: Install Gem dependencies
+        run: bundle install
+      - name: Linting podspec
+        run: bundle exec fastlane podspec_lint
+
+  lint_code:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Gem update system
+        run: gem update --system
+      - name: Gem install bundler
+        run: gem install bundler --user-install --no-document --quiet
+      - name: Install Gem dependencies
+        run: bundle install
+      - name: Linting swift code
+        run: bundle exec fastlane code_lint
+
+  spm_build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Swift build for iOS 13.0 simulator
+        run: swift build -Xswiftc "-sdk" -Xswiftc "`xcrun --sdk iphonesimulator --show-sdk-path`" -Xswiftc "-target" -Xswiftc "x86_64-apple-ios13.0-simulator"
+
+  test_debug:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Gem update system
+        run: gem update --system
+      - name: Gem install bundler
+        run: gem install bundler --user-install --no-document --quiet
+      - name: Install Gem dependencies
+        run: bundle install
+      - name: Run tests in debug mode
+        run: bundle exec fastlane test_debug
+
+  test_release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Gem update system
+        run: gem update --system
+      - name: Gem install bundler
+        run: gem install bundler --user-install --no-document --quiet
+      - name: Install Gem dependencies
+        run: bundle install
+      - name: Run tests in release mode
+        run: bundle exec fastlane test_release
