@@ -101,7 +101,7 @@ platform :ios do
     git_add(path: "CHANGELOG.md")
     git_commit(
       path: "CHANGELOG.md",
-      message: "Update CHANGELOG.md for version #{version}",
+      message: "Update CHANGELOG.md for version #{version} [skip ci]",
       allow_nothing_to_commit: true
     )
 
@@ -127,7 +127,7 @@ platform :ios do
     git_add(path: "docs")
     git_commit(
       path: "docs",
-      message: "Update docs folder for version #{version}"
+      message: "Update docs folder for version #{version} [skip ci]"
     )
 
     branch = git_branch
