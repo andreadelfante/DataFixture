@@ -6,8 +6,11 @@
 //  Copyright © 2020 CocoaPods. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+import DataFixture_RealmSeeder
+#else
 import DataFixture
-import RealmSwift
+#endif
 
 struct TestSeeder: RealmSeeder {
     private let factory = TestFixtureFactory()

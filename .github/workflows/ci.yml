@@ -28,12 +28,12 @@ jobs:
       - name: Linting swift code
         run: bundle exec fastlane code_lint
 
-  spm_build:
+  spm_test:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Swift build
-        run: swift build
+      - name: Swift test
+        run: swift test
 
   test_debug:
     runs-on: macos-latest
