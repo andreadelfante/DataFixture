@@ -1,7 +1,6 @@
 # Changelog
 
 ## 1.1.0
-- Add support for all platforms
 - Add support for SwiftPM
 
 ## 1.0.1
