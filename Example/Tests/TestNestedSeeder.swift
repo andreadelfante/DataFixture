@@ -7,6 +7,7 @@
 //
 
 import DataFixture
+import RealmSwift
 
 struct TestNestedSeeder: RealmSeeder {
     private let factory = TestFixtureFactory()

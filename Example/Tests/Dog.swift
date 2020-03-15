@@ -6,6 +6,7 @@
 //  Copyright © 2020 CocoaPods. All rights reserved.
 //
 
+import Foundation
 import RealmSwift
 import DataFixture
 

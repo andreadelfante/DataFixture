@@ -8,6 +8,7 @@
 
 import XCTest
 import DataFixture
+import RealmSwift
 
 class RealmSeederTests: XCTestCase {
     private var realm: Realm!
