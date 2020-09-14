@@ -85,7 +85,7 @@ platform :ios do
 
     changelog(version: version)
     #doc
-    publish_doc(version: version)
+    #publish_doc(version: version)
     publish_podspec(version: version)
   end
 
