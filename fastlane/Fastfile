@@ -84,7 +84,7 @@ platform :ios do
     pull_master
 
     changelog(version: version)
-    doc
+    #doc
     publish_doc(version: version)
     publish_podspec(version: version)
   end
