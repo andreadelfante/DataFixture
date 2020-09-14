@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.0
+- Bump iOS min requirement to 9.0
+
 ## 1.1.0
 - Add support for SwiftPM
 
