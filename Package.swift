@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "DataFixture",
-    platforms: [.iOS(.v8)],
+    platforms: [.iOS(.v9)],
     products: [
         .library(
             name: "DataFixture",
