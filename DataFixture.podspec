@@ -17,7 +17,7 @@ Creation of data model easily, with no headache. DataFixture is onvenient way to
 
   s.cocoapods_version = '> 0.39.0'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.dependency 'Fakery'
 

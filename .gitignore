@@ -23,8 +23,7 @@ DerivedData
 .bundle
 
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
-
+Carthage/Checkouts
 Carthage/Build
 
 # We recommend against adding the Pods directory to your .gitignore. However
@@ -36,11 +35,11 @@ Carthage/Build
 #
 Pods/
 Example/DataFixture.xcworkspace
-
 fastlane/report.xml
-
 fastlane/test_output/report.html
-
 fastlane/test_output/report.junit
+
 .build
 Package.resolved
+
+vendor/
