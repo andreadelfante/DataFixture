@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		651B72CD254CE18900B6071A /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651B72CC254CE18900B6071A /* Dog.swift */; };
+		651B72E7254CE52200B6071A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651B72E6254CE52200B6071A /* Person.swift */; };
+		656149E22555C853002FC2D9 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656149E12555C853002FC2D9 /* Company.swift */; };
+		65680CE6255C55750043395E /* Realm+FixtureMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65680CE5255C55750043395E /* Realm+FixtureMakerTests.swift */; };
+		65B514772550B3AE00058158 /* TestSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B514762550B3AE00058158 /* TestSeeder.swift */; };
+		65B5147B2550B41700058158 /* TestNestedSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5147A2550B41700058158 /* TestNestedSeeder.swift */; };
+		65B5147E2550B45600058158 /* RealmSeederTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5147D2550B45600058158 /* RealmSeederTests.swift */; };
+		65E2123A2555F89700C8806A /* FixtureFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E212392555F89700C8806A /* FixtureFactoryTests.swift */; };
 		848F54C833115A3C212D9999 /* Pods_DataFixture_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB7AEFE52E0B21E9503AB6B /* Pods_DataFixture_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -17,6 +25,14 @@
 		51695741E82C6D9FACDC4289 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* DataFixture_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataFixture_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		651B72CC254CE18900B6071A /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
+		651B72E6254CE52200B6071A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		656149E12555C853002FC2D9 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		65680CE5255C55750043395E /* Realm+FixtureMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+FixtureMakerTests.swift"; sourceTree = "<group>"; };
+		65B514762550B3AE00058158 /* TestSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSeeder.swift; sourceTree = "<group>"; };
+		65B5147A2550B41700058158 /* TestNestedSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNestedSeeder.swift; sourceTree = "<group>"; };
+		65B5147D2550B45600058158 /* RealmSeederTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSeederTests.swift; sourceTree = "<group>"; };
+		65E212392555F89700C8806A /* FixtureFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureFactoryTests.swift; sourceTree = "<group>"; };
 		6947041A1153293A2F94D717 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		92158A2C55AD7445094C85AB /* Pods-DataFixture_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataFixture_Tests.debug.xcconfig"; path = "Target Support Files/Pods-DataFixture_Tests/Pods-DataFixture_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,7 +71,12 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				65B514752550B3A200058158 /* Seeders */,
+				651B72CB254CE17E00B6071A /* Models */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				65B5147D2550B45600058158 /* RealmSeederTests.swift */,
+				65E212392555F89700C8806A /* FixtureFactoryTests.swift */,
+				65680CE5255C55750043395E /* Realm+FixtureMakerTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -76,6 +97,25 @@
 				6947041A1153293A2F94D717 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		651B72CB254CE17E00B6071A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				651B72CC254CE18900B6071A /* Dog.swift */,
+				651B72E6254CE52200B6071A /* Person.swift */,
+				656149E12555C853002FC2D9 /* Company.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		65B514752550B3A200058158 /* Seeders */ = {
+			isa = PBXGroup;
+			children = (
+				65B514762550B3AE00058158 /* TestSeeder.swift */,
+				65B5147A2550B41700058158 /* TestNestedSeeder.swift */,
+			);
+			path = Seeders;
 			sourceTree = "<group>";
 		};
 		85C93C863699F716EC752BC4 /* Pods */ = {
@@ -129,7 +169,7 @@
 				TargetAttributes = {
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1200;
 					};
 				};
 			};
@@ -216,6 +256,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65E2123A2555F89700C8806A /* FixtureFactoryTests.swift in Sources */,
+				65B5147B2550B41700058158 /* TestNestedSeeder.swift in Sources */,
+				65B5147E2550B45600058158 /* RealmSeederTests.swift in Sources */,
+				651B72E7254CE52200B6071A /* Person.swift in Sources */,
+				651B72CD254CE18900B6071A /* Dog.swift in Sources */,
+				65B514772550B3AE00058158 /* TestSeeder.swift in Sources */,
+				65680CE6255C55750043395E /* Realm+FixtureMakerTests.swift in Sources */,
+				656149E22555C853002FC2D9 /* Company.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +373,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 92158A2C55AD7445094C85AB /* Pods-DataFixture_Tests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -337,6 +386,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
@@ -346,6 +396,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48D6FECC77D6BFD454208E54 /* Pods-DataFixture_Tests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",

@@ -7,8 +7,10 @@
 
 import Foundation
 
+/// Allow the model to define his own factory.
 public protocol FixtureFactoryable {
 	associatedtype Factory: FixtureFactory
-	
-	static func factory() -> Factory
+    
+    /// Get a new factory instance for the model.
+    static var factory: Factory { get }
 }
