@@ -5,6 +5,7 @@ PODS:
   - DataFixture/Basic (2.0.0):
     - Fakery
   - DataFixture/RealmSeeder (2.0.0):
+    - DataFixture/Basic
     - Fakery
     - RealmSwift
   - Fakery (4.1.1)
@@ -32,7 +33,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DataFixture: 9918133acd1b3f8817671d5696705a5b742707ca
+  DataFixture: 56690af61f426bdcc8cf7b60a0959ad9a2c3486c
   Fakery: d3380c4aa1efe7631c0831d7e26aa9db4491f014
   Realm: 784ca1da1453e31a9c9adc14445421a81f316119
   RealmSwift: cc52fe0dcea56387274dff36e19219e055a3bb84

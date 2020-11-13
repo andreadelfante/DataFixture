@@ -30,6 +30,7 @@ Creation of data model easily, with no headache. DataFixture is onvenient way to
   s.subspec 'RealmSeeder' do |r|
     r.source_files = [ 'DataFixture-RealmSeeder/Classes/**/*' ]
 
+    r.dependency 'DataFixture/Basic'
     r.dependency 'RealmSwift'
   end
 end

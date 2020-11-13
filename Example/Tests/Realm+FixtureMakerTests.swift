@@ -21,6 +21,14 @@ class RealmFixtureMakerTests: XCTestCase {
         
         realm = try Realm(configuration: Realm.Configuration(inMemoryIdentifier: name))
     }
+    
+    override func tearDownWithError() throws {
+        try realm.write {
+            realm.deleteAll()
+        }
+        
+        try super.tearDownWithError()
+    }
 
     func testCreateOneObjectInRealm() throws {
         let dog = try Dog.factory.create(in: realm)

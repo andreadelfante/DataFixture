@@ -14,115 +14,122 @@ Create data models easily, with no headache. DataFixture is a convenient way to 
 
 To install DataFixture, simply add in your Podfile `pod 'DataFixture'` and run `pod install`
 
-### Swift Package Manager
-
-Simply add a package dependency to your Xcode project, select File > Swift Packages > Add Package Dependency and enter
-this repository URL:
-```
-https://github.com/andreadelfante/DataFixture.git
-```
-
 ## Usage
 ### Basic
-1. Create a new file to define fixtures for each model.
+1. Create a new file to define the fixture factory for a model.
 ```swift
 import DataFixture
 
-let factory = FixtureFactory()
+extension Company: FixtureFactoryable {
+    static var factory: CompanyFixtureFactory {
+        return CompanyFixtureFactory()
+    }
+}
 
-// This is to define only a fixture for `Company` model
-factory.define(for: Company.self, { (faker, attributes, resolver) -> Company in
-    return Company(name: faker.company.name(),
-                   employees: resolver.resolve(Person.self).create(10))
-})
-
-// This is to define only a fixture for `Company` model and its relative JSON Object, useful to fake network JSON responses.
-factory.define(for: Company.self, { (faker, attributes, resolver) -> Company in
-    Company(name: faker.company.name(),
-            employees: resolver.resolve(Person.self).create(10))
-}) { (object, resolver) -> [String : Any] in
-    return [
-        "name": object.name,
-        "employees": resolver.resolve(Person.self).createJSON(from: object.employees)
-    ]
+struct CompanyFixtureFactory: FixtureFactory {
+    typealias Model = Company
+    
+    func definition() -> FixtureDefinition<Company> {
+        define { (faker) in
+            Company(
+                name: faker.company.name(),
+                employees: Person.factory.make(5)
+            )
+        }
+    }
+    
+    // If you need to override a model field, simply define a function that returns a `FixtureDefinition`.
+    // To redefine the default definition, you must use the `redefine` function.
+    func empty(name: String) -> FixtureDefinition<Company> {
+        redefine { (company) in
+            company.name = name
+        }
+    }
 }
 ```
 
-2. Then you can call a fixture to build one or more fake models.
+2. Then you can build the model by using its factory.
 ```swift
-// This create a single object of type Company
-factory.resolve(Company.self).create() // or `factory[Company.self].create()`
+// Create a single object of type Company.
+Company.factory.makeJSON()
+// Create a single object of type Company with no employees.
+Company.factory.empty(name: "EmptyCompany").make()
 
-// This create 10 objects of type Company
-factory.resolve(Company.self).create(10) // or `factory[Company.self].create(10)`
+// Create 10 objects of type Company.
+Company.factory.make(10)
+// Create 10 objects of type Company with no employees.
+Company.factory.empty(name: "EmptyCompany").make(10)
 ```
 
-### Advanced
-1. Create a `struct` to define a fixture.
+### JSON Fixtures
+A factory can create a JSON Object from a generated model.
+1. First, you have to extend `JSONFixtureFactory` protocol to the model factory.
 ```swift
 import DataFixture
 
-class PersonFixtureAttributes: FixtureAttributes { // Define this class if you want to override fields without guessing keys
-    fileprivate static let firstNameKey = "firstName"
-    fileprivate static let lastNameKey = "lastName"
-    fileprivate static let birthdayKey = "birthday"
-    fileprivate static let dogsKey = "dogs"
-    
-    init(firstName: String? = nil, lastName: String? = nil, birthday: Date? = nil, dogs: [Dog]? = nil) {
-        super.init(attributes: [
-            PersonFixtureAttributes.firstNameKey: firstName as Any,
-            PersonFixtureAttributes.lastNameKey: lastName as Any,
-            PersonFixtureAttributes.birthdayKey: birthday as Any,
-            PersonFixtureAttributes.dogsKey: dogs as Any
-        ])
+extension Company: FixtureFactoryable {
+    static var factory: CompanyFixtureFactory {
+        return CompanyFixtureFactory()
     }
 }
 
-struct PersonFixture: JSONFixture { // `Fixture` to define only a fixture model. For fixtured JSONObject you must use `JSONFixture`.
-    typealias Object = Person
+struct CompanyFixtureFactory: JSONFixtureFactory {
+    typealias Model = Company
     
-    func fixture(faker: Faker, attributes: FixtureAttributes, resolver: FixtureResolver) -> Person {
-        return Person(
-            firstName: attributes[PersonFixtureAttributes.firstNameKey, faker.name.firstName()],
-            lastName: attributes[PersonFixtureAttributes.lastNameKey, faker.name.lastName()],
-            birthday: attributes[PersonFixtureAttributes.birthdayKey, faker.date.forward(10)],
-            dogs: attributes[PersonFixtureAttributes.dogsKey, resolver.resolve(Dog.self).create(10)]
-        ])
+    func definition() -> FixtureDefinition<Company> {
+        define { (faker) in
+            Company(
+                name: faker.company.name(),
+                employees: Person.factory.make(5)
+            )
+        }
     }
     
-    func jsonFixture(object: Person, resolver: FixtureResolver) -> [String : Any] {
-        return [
-            "firstName": object.firstName,
-            "lastName": object.lastName,
-            "birthday": object.birthday?.timeIntervalSince1970 as Any,
-            "dogs": resolver.resolve(Dog.self).createJSON(from: object.dogs)
-        ]
+    // This function define the json definition, using the default definition (function `definition()`).
+    func jsonDefinition() -> JSONFixtureDefinition<Company> {
+        defineJSON { (company) -> [String : Any] in
+            [
+                "name": company.name,
+                "employees": Person.factory.makeJSON(from: company.employees)
+            ]
+        }
+    }
+    
+    // If you need to generate the JSON Object of an empty company, change the return type to `JSONFixtureDefinition`
+    func empty(name: String) -> JSONFixtureDefinition<Company> { // Previously `FixtureDefinition`
+        redefine { (company) in
+            company.name = name
+        }
     }
 }
 ```
 
-2. Override FixtureFactory and define associations in `init()`.
+2. Now you can generate the JSON Object of the model.
 ```swift
-import DataFixture
+// Create a single JSON object of type Company.
+Company.factory.makeJSON()
+// Create a single JSON object of type Company with no employees.
+Company.factory.empty(name: "EmptyCompany").makeJSON()
 
-class FixtureFactory: DataFixture.FixtureFactory {
-    override init() {
-        super.init()
-        
-        define(Person.self, fixture: PersonFixture.self)
-    }
-}
+// Create a JSON Array of 10 objects of type Company.
+Company.factory.makeJSON(10)
+// Create a JSON Array of 10 objects of type Company with no employees.
+Company.factory.empty(name: "EmptyCompany").makeJSON(10)
+
+// Create a Company object with its relative JSON object.
+Company.factory.makeWithJSON()
+// Create 10 Company object with its relative JSON objects.
+Company.factory.makeWithJSON(10)
 ```
 
-3. Call the fixture with `factory`.
+3. With `JSONFixtureFactory` you can create a JSON from an external model object.
 ```swift
-factory.resolve(Person.self).create()
-factory.resolve(Person.self).create(PersonFixtureAttributes(firstName: "Luke")) // Create a person with firstName = Luke
-factory.resolve(Person.self).create(3, PersonFixtureAttributes(firstName: "Luke")) // Create 3 persons with firstName = Luke
-```
+let company = Company.factory.make()
+let JSONObject = Company.factory.makeJSON(from: company)
 
-### Locale support
-DataFixture uses [Fakery](https://github.com/vadymmarkov/Fakery) to generate fake data. Changing the locale of Fakery is quite simple: set the language using `DataFixtureConfig.locale = "<locale>"`. All supported locales are [here](https://github.com/vadymmarkov/Fakery/tree/master/Resources/Locales).
+let companies = Company.factory.make(3)
+let JSONArray = Company.factory.makeJSON(from: companies)
+```
 
 ## RealmSeeder
 This submodule can seed some data easily in [Realm](https://github.com/realm/realm-cocoa) Database, using Seeder.
@@ -135,7 +142,7 @@ struct ExampleSeeder: RealmSeeder {
         // Put here your database population
         
         realm.add(Person(firstName: "Luke"), update: .all) // You can simply create an object and then add in Realm instance.
-        realm.add(factory.resolve(Dog.self).create(10), update: .all) // You can easily create 10 fake dogs and then add in Realm instance.
+        try Dog.factory.create(10, in: realm) // You can easily create 10 fake dogs and then add in Realm instance.
         
         try realm.seed(AnotherSeeder.self, AnotherAnotherSeeder.self) // To call another seed, please use this function to automatic handling transactions.
     }

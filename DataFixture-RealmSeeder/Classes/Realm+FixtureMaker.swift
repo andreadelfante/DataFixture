@@ -6,10 +6,13 @@
 //
 
 import RealmSwift
+#if SWIFT_PACKAGE
+import DataFixture
+#endif
 
 extension FixtureMaker where Model: Object {
     
-    /// Make a collection of models and persist them into realm.
+    /// Make a collection of models and persist them into Realm.
     /// - Parameters:
     ///   - number: the number of models to make.
     ///   - realm: the realm the model is saved in.
@@ -21,7 +24,7 @@ extension FixtureMaker where Model: Object {
         return models
     }
     
-    /// Make a single model and persist it into realm.
+    /// Make a single model and persist it into Realm.
     /// - Parameter realm: the realm the model is saved in.
     /// - Returns: the saved model.
     @discardableResult

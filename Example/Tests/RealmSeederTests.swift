@@ -21,6 +21,14 @@ class RealmSeederTests: XCTestCase {
         
         realm = try Realm(configuration: Realm.Configuration(inMemoryIdentifier: name))
     }
+    
+    override func tearDownWithError() throws {
+        try realm.write {
+            realm.deleteAll()
+        }
+        
+        try super.tearDownWithError()
+    }
 
     func testSingleSeeding() {
         XCTAssertNoThrow(try realm.seed(TestSeeder.self))
