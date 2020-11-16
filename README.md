@@ -43,6 +43,7 @@ struct CompanyFixtureFactory: FixtureFactory {
     func empty(name: String) -> FixtureDefinition<Company> {
         redefine { (company) in
             company.name = name
+            company.employees = []
         }
     }
 }
@@ -99,6 +100,7 @@ struct CompanyFixtureFactory: JSONFixtureFactory {
     func empty(name: String) -> JSONFixtureDefinition<Company> { // Previously `FixtureDefinition`
         redefine { (company) in
             company.name = name
+            company.employees = []
         }
     }
 }
