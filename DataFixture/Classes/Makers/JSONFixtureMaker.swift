@@ -30,7 +30,7 @@ extension JSONFixtureMaker {
 		return makeJSON(1).first!
 	}
     
-    /// Create a JSON Array from a model.
+    /// Create a JSON Object from a model.
     /// - Parameter object: the model to use.
     /// - Returns: the JSON Array.
     public func makeJSON(from object: Model) -> [String: Any] {
