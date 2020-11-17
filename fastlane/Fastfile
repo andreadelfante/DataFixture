@@ -108,7 +108,7 @@ platform :ios do
   private_lane :publish_changelog do |options|
     version = options[:version]
 
-    it_add(path: "CHANGELOG.md")
+    git_add(path: "CHANGELOG.md")
     git_commit(
       path: "CHANGELOG.md",
       message: "Update CHANGELOG.md for version #{version} [skip ci]",
