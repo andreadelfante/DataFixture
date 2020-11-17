@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.0
+- New fresh DataFixture library.
+
 ## 1.2.0
 - Bump iOS min requirement to 9.0
 
