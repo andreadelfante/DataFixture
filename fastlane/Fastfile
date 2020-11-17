@@ -81,6 +81,8 @@ platform :ios do
   lane :deploy do
     version = read_podspec['version']
 
+    sh("bundle exec pod trunk me")
+
     changelog(version: version)
     doc
     publish_changelog(version: version)
