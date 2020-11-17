@@ -81,11 +81,10 @@ platform :ios do
   lane :deploy do
     version = read_podspec['version']
 
-    pull_master
-
     changelog(version: version)
-    #doc
-    #publish_doc(version: version)
+    doc
+    publish_changelog(version: version)
+    publish_doc(version: version)
     publish_podspec(version: version)
   end
 
@@ -97,15 +96,6 @@ platform :ios do
     if !is_write_changelog
       UI.user_error!("Please write changelog for version #{version} first!")
     end
-
-    git_add(path: "CHANGELOG.md")
-    git_commit(
-      path: "CHANGELOG.md",
-      message: "Update CHANGELOG.md for version #{version} [skip ci]",
-      allow_nothing_to_commit: true
-    )
-
-    puts "Changelog for version #{version} ready!"
   end
 
   desc "Create documentation"
@@ -115,15 +105,22 @@ platform :ios do
     )
   end
 
-  private_lane :pull_master do
-    ensure_git_branch
-    git_pull
+  private_lane :publish_changelog do |options|
+    version = options[:version]
+
+    it_add(path: "CHANGELOG.md")
+    git_commit(
+      path: "CHANGELOG.md",
+      message: "Update CHANGELOG.md for version #{version} [skip ci]",
+      allow_nothing_to_commit: true
+    )
+
+    puts "Changelog for version #{version} ready!"
   end
 
   private_lane :publish_doc do |options|
     version = options[:version]
     
-    ensure_git_branch
     git_add(path: "docs")
     git_commit(
       path: "docs",
@@ -142,7 +139,6 @@ platform :ios do
   private_lane :publish_podspec do |options|
     version = options[:version]
 
-    ensure_git_branch
     add_git_tag(tag: version, force: true)
     push_git_tags(force: true)
     
