@@ -21,9 +21,9 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          DataFixture Docs
+          DataFixture 2.0.0 Docs
         </a>
-         (94% documented)
+         (91% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -40,7 +40,7 @@
         </p>
     
         <p class="header-col header-col--secondary">
-          <a class="header-link" href="dash-feed://https%3A%2F%2Fandreadelfante%2Egithub%2Eio%2Fdocsets%2FDataFixture%2Exml">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fandreadelfante.github.io%2FDataFixture%2Fdocsets%2FDataFixture.xml">
             <img class="header-icon" src="img/dash.png"/>
             Install in Dash
           </a>
@@ -60,10 +60,10 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/FixtureAttributes.html">FixtureAttributes</a>
+                <a class="nav-group-task-link" href="Classes/FixtureDefinition.html">FixtureDefinition</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/FixtureFactory.html">FixtureFactory</a>
+                <a class="nav-group-task-link" href="Classes/JSONFixtureDefinition.html">JSONFixtureDefinition</a>
               </li>
             </ul>
           </li>
@@ -79,13 +79,19 @@
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/Fixture.html">Fixture</a>
+                <a class="nav-group-task-link" href="Protocols/FixtureFactory.html">FixtureFactory</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FixtureResolver.html">FixtureResolver</a>
+                <a class="nav-group-task-link" href="Protocols/FixtureFactoryable.html">FixtureFactoryable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/JSONFixture.html">JSONFixture</a>
+                <a class="nav-group-task-link" href="Protocols/FixtureMaker.html">FixtureMaker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JSONFixtureFactory.html">JSONFixtureFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JSONFixtureMaker.html">JSONFixtureMaker</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RealmSeeder.html">RealmSeeder</a>
@@ -93,22 +99,8 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Structs.html">Structures</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/DataFixtureConfig.html">DataFixtureConfig</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/FixtureBuilder.html">FixtureBuilder</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Typealiases.html#/s:11DataFixture5Fakera">Faker</a>
-              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Typealiases.html#/s:11DataFixture5Realma">Realm</a>
               </li>
@@ -130,6 +122,34 @@
           <div class="section-content">
             <div class="task-group">
               <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11DataFixture0B5MakerP"></a>
+                    <a name="//apple_ref/swift/Protocol/FixtureMaker" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11DataFixture0B5MakerP">FixtureMaker</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This protocol define a fixture maker.</p>
+
+                        <a href="Protocols/FixtureMaker.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FixtureMaker</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -161,9 +181,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11DataFixture0B0P"></a>
-                    <a name="//apple_ref/swift/Protocol/Fixture" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11DataFixture0B0P">Fixture</a>
+                    <a name="/s:11DataFixture0B7FactoryP"></a>
+                    <a name="//apple_ref/swift/Protocol/FixtureFactory" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11DataFixture0B7FactoryP">FixtureFactory</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -171,15 +191,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This protocol defines the rules to create an object</p>
+                        <p>This protocol specifies the definitions to create an object.</p>
 
-                        <a href="Protocols/Fixture.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/FixtureFactory.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Fixture</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FixtureFactory</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FixtureMaker.html">FixtureMaker</a></span></code></pre>
 
                         </div>
                       </div>
@@ -189,9 +209,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11DataFixture11JSONFixtureP"></a>
-                    <a name="//apple_ref/swift/Protocol/JSONFixture" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11DataFixture11JSONFixtureP">JSONFixture</a>
+                    <a name="/s:11DataFixture18JSONFixtureFactoryP"></a>
+                    <a name="//apple_ref/swift/Protocol/JSONFixtureFactory" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11DataFixture18JSONFixtureFactoryP">JSONFixtureFactory</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,13 +221,13 @@
                       <div class="abstract">
                         <p>This protocol defines the rules to create a JSON Object from an object.</p>
 
-                        <a href="Protocols/JSONFixture.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/JSONFixtureFactory.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">JSONFixture</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Fixture.html">Fixture</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">JSONFixtureFactory</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FixtureFactory.html">FixtureFactory</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/JSONFixtureMaker.html">JSONFixtureMaker</a></span></code></pre>
 
                         </div>
                       </div>
@@ -217,9 +237,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11DataFixture0B8ResolverP"></a>
-                    <a name="//apple_ref/swift/Protocol/FixtureResolver" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11DataFixture0B8ResolverP">FixtureResolver</a>
+                    <a name="/s:11DataFixture0B11FactoryableP"></a>
+                    <a name="//apple_ref/swift/Protocol/FixtureFactoryable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11DataFixture0B11FactoryableP">FixtureFactoryable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -227,15 +247,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This protocol defines a resolver to get a fixture.</p>
+                        <p>Allow the model to define his own factory.</p>
 
-                        <a href="Protocols/FixtureResolver.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/FixtureFactoryable.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FixtureResolver</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FixtureFactoryable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11DataFixture16JSONFixtureMakerP"></a>
+                    <a name="//apple_ref/swift/Protocol/JSONFixtureMaker" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11DataFixture16JSONFixtureMakerP">JSONFixtureMaker</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Protocols/JSONFixtureMaker.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">JSONFixtureMaker</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FixtureMaker.html">FixtureMaker</a></span></code></pre>
 
                         </div>
                       </div>
@@ -250,8 +298,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://twitter.com/a_delfante" target="_blank" rel="external">andreadelfante</a>. All rights reserved. (Last updated: 2020-03-15)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="https://twitter.com/a_delfante" target="_blank" rel="external">andreadelfante</a>. All rights reserved. (Last updated: 2020-11-17)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

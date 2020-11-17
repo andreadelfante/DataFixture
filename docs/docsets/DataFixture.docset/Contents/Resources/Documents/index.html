@@ -20,9 +20,9 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          DataFixture Docs
+          DataFixture 2.0.0 Docs
         </a>
-         (94% documented)
+         (91% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -39,7 +39,7 @@
         </p>
     
         <p class="header-col header-col--secondary">
-          <a class="header-link" href="dash-feed://https%3A%2F%2Fandreadelfante%2Egithub%2Eio%2Fdocsets%2FDataFixture%2Exml">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fandreadelfante.github.io%2FDataFixture%2Fdocsets%2FDataFixture.xml">
             <img class="header-icon" src="img/dash.png"/>
             Install in Dash
           </a>
@@ -59,10 +59,10 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/FixtureAttributes.html">FixtureAttributes</a>
+                <a class="nav-group-task-link" href="Classes/FixtureDefinition.html">FixtureDefinition</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/FixtureFactory.html">FixtureFactory</a>
+                <a class="nav-group-task-link" href="Classes/JSONFixtureDefinition.html">JSONFixtureDefinition</a>
               </li>
             </ul>
           </li>
@@ -78,13 +78,19 @@
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/Fixture.html">Fixture</a>
+                <a class="nav-group-task-link" href="Protocols/FixtureFactory.html">FixtureFactory</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FixtureResolver.html">FixtureResolver</a>
+                <a class="nav-group-task-link" href="Protocols/FixtureFactoryable.html">FixtureFactoryable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/JSONFixture.html">JSONFixture</a>
+                <a class="nav-group-task-link" href="Protocols/FixtureMaker.html">FixtureMaker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JSONFixtureFactory.html">JSONFixtureFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JSONFixtureMaker.html">JSONFixtureMaker</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RealmSeeder.html">RealmSeeder</a>
@@ -92,22 +98,8 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Structs.html">Structures</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/DataFixtureConfig.html">DataFixtureConfig</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/FixtureBuilder.html">FixtureBuilder</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Typealiases.html#/s:11DataFixture5Fakera">Faker</a>
-              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Typealiases.html#/s:11DataFixture5Realma">Realm</a>
               </li>
@@ -141,126 +133,144 @@
 <h3 id='basic' class='heading'>Basic</h3>
 
 <ol>
-<li>Create a new file to define fixtures for each model.
+<li>Create a new file to define the fixture factory for a model.
 &ldquo;`swift
 import DataFixture</li>
 </ol>
 
-<p>let factory = FixtureFactory()</p>
-
-<p>// This is to define only a fixture for <code>Company</code> model
-factory.define(for: Company.self, { (faker, attributes, resolver) -&gt; Company in
-    return Company(name: faker.company.name(),
-                   employees: resolver.resolve(Person.self).create(10))
-})</p>
-
-<p>// This is to define only a fixture for <code>Company</code> model and its relative JSON Object, useful to fake network JSON responses.
-factory.define(for: Company.self, { (faker, attributes, resolver) -&gt; Company in
-    Company(name: faker.company.name(),
-            employees: resolver.resolve(Person.self).create(10))
-}) { (object, resolver) -&gt; [String : Any] in
-    return [
-        &quot;name&rdquo;: object.name,
-        &ldquo;employees&rdquo;: resolver.resolve(Person.self).createJSON(from: object.employees)
-    ]
+<p>extension Company: FixtureFactoryable {
+    static var factory: CompanyFixtureFactory {
+        return CompanyFixtureFactory()
+    }
 }</p>
-<pre class="highlight plaintext"><code>
-2. Then you can call a fixture to build one or more fake models.
-```swift
-// This create a single object of type Company
-factory.resolve(Company.self).create() // or `factory[Company.self].create()`
 
-// This create 10 objects of type Company
-factory.resolve(Company.self).create(10) // or `factory[Company.self].create(10)`
-</code></pre>
-<h3 id='advanced' class='heading'>Advanced</h3>
-
-<ol>
-<li>Create a <code>struct</code> to define a fixture.
-&ldquo;`swift
-import DataFixture</li>
-</ol>
-
-<p>class PersonFixtureAttributes: FixtureAttributes { // Define this class if you want to override fields without guessing keys
-    fileprivate static let firstNameKey = &quot;firstName&rdquo;
-    fileprivate static let lastNameKey = &ldquo;lastName&rdquo;
-    fileprivate static let birthdayKey = &ldquo;birthday&rdquo;
-    fileprivate static let dogsKey = &ldquo;dogs&rdquo;</p>
-<pre class="highlight plaintext"><code>init(firstName: String? = nil, lastName: String? = nil, birthday: Date? = nil, dogs: [Dog]? = nil) {
-    super.init(attributes: [
-        PersonFixtureAttributes.firstNameKey: firstName as Any,
-        PersonFixtureAttributes.lastNameKey: lastName as Any,
-        PersonFixtureAttributes.birthdayKey: birthday as Any,
-        PersonFixtureAttributes.dogsKey: dogs as Any
-    ])
-}
-</code></pre>
-
-<p>}</p>
-
-<p>struct PersonFixture: JSONFixture { // <code><a href="Protocols/Fixture.html">Fixture</a></code> to define only a fixture model. For fixtured JSONObject you must use <code><a href="Protocols/JSONFixture.html">JSONFixture</a></code>.
-    typealias Object = Person</p>
-<pre class="highlight plaintext"><code>func fixture(faker: Faker, attributes: FixtureAttributes, resolver: FixtureResolver) -&gt; Person {
-    return Person(
-        firstName: attributes[PersonFixtureAttributes.firstNameKey, faker.name.firstName()],
-        lastName: attributes[PersonFixtureAttributes.lastNameKey, faker.name.lastName()],
-        birthday: attributes[PersonFixtureAttributes.birthdayKey, faker.date.forward(10)],
-        dogs: attributes[PersonFixtureAttributes.dogsKey, resolver.resolve(Dog.self).create(10)]
-    ])
+<p>struct CompanyFixtureFactory: FixtureFactory {
+    typealias Model = Company</p>
+<pre class="highlight plaintext"><code>func definition() -&gt; FixtureDefinition&lt;Company&gt; {
+    define { (faker) in
+        Company(
+            name: faker.company.name(),
+            employees: Person.factory.make(5)
+        )
+    }
 }
 
-func jsonFixture(object: Person, resolver: FixtureResolver) -&gt; [String : Any] {
-    return [
-        "firstName": object.firstName,
-        "lastName": object.lastName,
-        "birthday": object.birthday?.timeIntervalSince1970 as Any,
-        "dogs": resolver.resolve(Dog.self).createJSON(from: object.dogs)
-    ]
-}
-</code></pre>
-
-<p>}</p>
-<pre class="highlight plaintext"><code>
-2. Override FixtureFactory and define associations in `init()`.
-```swift
-import DataFixture
-
-class FixtureFactory: DataFixture.FixtureFactory {
-    override init() {
-        super.init()
-
-        define(Person.self, fixture: PersonFixture.self)
+// If you need to override a model field, simply define a function that returns a `FixtureDefinition`.
+// To redefine the default definition, you must use the `redefine` function.
+func empty(name: String) -&gt; FixtureDefinition&lt;Company&gt; {
+    redefine { (company) in
+        company.name = name
+        company.employees = []
     }
 }
 </code></pre>
 
+<p>}</p>
+<pre class="highlight plaintext"><code>
+2. Then you can build the model by using its factory.
+```swift
+// Create a single object of type Company.
+Company.factory.makeJSON()
+// Create a single object of type Company with no employees.
+Company.factory.empty(name: "EmptyCompany").make()
+
+// Create 10 objects of type Company.
+Company.factory.make(10)
+// Create 10 objects of type Company with no employees.
+Company.factory.empty(name: "EmptyCompany").make(10)
+</code></pre>
+<h3 id='json-fixtures' class='heading'>JSON Fixtures</h3>
+
+<p>A factory can create a JSON Object from a generated model.</p>
+
 <ol>
-<li>Call the fixture with <code>factory</code>.
-<code>swift
-factory.resolve(Person.self).create()
-factory.resolve(Person.self).create(PersonFixtureAttributes(firstName: &quot;Luke&quot;)) // Create a person with firstName = Luke
-factory.resolve(Person.self).create(3, PersonFixtureAttributes(firstName: &quot;Luke&quot;)) // Create 3 persons with firstName = Luke
-</code></li>
+<li>First, you have to extend <code><a href="Protocols/JSONFixtureFactory.html">JSONFixtureFactory</a></code> protocol to the model factory.
+&rdquo;`swift
+import DataFixture</li>
 </ol>
-<h3 id='locale-support' class='heading'>Locale support</h3>
 
-<p>DataFixture uses <a href="https://github.com/vadymmarkov/Fakery">Fakery</a> to generate fake data. Changing the locale of Fakery is quite simple: set the language using <code>DataFixtureConfig.locale = &quot;&lt;locale&gt;&quot;</code>. All supported locales are <a href="https://github.com/vadymmarkov/Fakery/tree/master/Resources/Locales">here</a>.</p>
-<h2 id='realmseeder' class='heading'>RealmSeeder</h2>
+<p>extension Company: FixtureFactoryable {
+    static var factory: CompanyFixtureFactory {
+        return CompanyFixtureFactory()
+    }
+}</p>
 
-<p>This submodule can seed some data easily in <a href="https://github.com/realm/realm-cocoa">Realm</a> Database, using Seeder.
-First of all, define it in your Podfile <code>pod &#39;DataFixture/RealmSeeder&#39;</code>. Then create a new <code>struct</code> to define a RealmSeeder.</p>
-<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">DataFixture</span>
+<p>struct CompanyFixtureFactory: JSONFixtureFactory {
+    typealias Model = Company</p>
+<pre class="highlight plaintext"><code>func definition() -&gt; FixtureDefinition&lt;Company&gt; {
+    define { (faker) in
+        Company(
+            name: faker.company.name(),
+            employees: Person.factory.make(5)
+        )
+    }
+}
 
-<span class="kd">struct</span> <span class="kt">ExampleSeeder</span><span class="p">:</span> <span class="kt">RealmSeeder</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">run</span><span class="p">(</span><span class="nv">realm</span><span class="p">:</span> <span class="kt">Realm</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
-        <span class="c1">// Put here your database population</span>
+// This function define the json definition, using the default definition (function `definition()`).
+func jsonDefinition() -&gt; JSONFixtureDefinition&lt;Company&gt; {
+    defineJSON { (company) -&gt; [String : Any] in
+        [
+            "name": company.name,
+            "employees": Person.factory.makeJSON(from: company.employees)
+        ]
+    }
+}
 
-        <span class="n">realm</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="kt">Person</span><span class="p">(</span><span class="nv">firstName</span><span class="p">:</span> <span class="s">"Luke"</span><span class="p">),</span> <span class="nv">update</span><span class="p">:</span> <span class="o">.</span><span class="n">all</span><span class="p">)</span> <span class="c1">// You can simply create an object and then add in Realm instance.</span>
-        <span class="n">realm</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">factory</span><span class="o">.</span><span class="nf">resolve</span><span class="p">(</span><span class="kt">Dog</span><span class="o">.</span><span class="k">self</span><span class="p">)</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="nv">update</span><span class="p">:</span> <span class="o">.</span><span class="n">all</span><span class="p">)</span> <span class="c1">// You can easily create 10 fake dogs and then add in Realm instance.</span>
+// If you need to generate the JSON Object of an empty company, change the return type to `JSONFixtureDefinition`
+func empty(name: String) -&gt; JSONFixtureDefinition&lt;Company&gt; { // Previously `FixtureDefinition`
+    redefine { (company) in
+        company.name = name
+        company.employees = []
+    }
+}
+</code></pre>
 
-        <span class="k">try</span> <span class="n">realm</span><span class="o">.</span><span class="nf">seed</span><span class="p">(</span><span class="kt">AnotherSeeder</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="kt">AnotherAnotherSeeder</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="c1">// To call another seed, please use this function to automatic handling transactions.</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>}</p>
+<pre class="highlight plaintext"><code>
+2. Now you can generate the JSON Object of the model.
+```swift
+// Create a single JSON object of type Company.
+Company.factory.makeJSON()
+// Create a single JSON object of type Company with no employees.
+Company.factory.empty(name: "EmptyCompany").makeJSON()
+
+// Create a JSON Array of 10 objects of type Company.
+Company.factory.makeJSON(10)
+// Create a JSON Array of 10 objects of type Company with no employees.
+Company.factory.empty(name: "EmptyCompany").makeJSON(10)
+
+// Create a Company object with its relative JSON object.
+Company.factory.makeWithJSON()
+// Create 10 Company object with its relative JSON objects.
+Company.factory.makeWithJSON(10)
+</code></pre>
+
+<ol>
+<li>With <code><a href="Protocols/JSONFixtureFactory.html">JSONFixtureFactory</a></code> you can create a JSON from an external model object.
+&ldquo;`swift
+let company = Company.factory.make()
+let JSONObject = Company.factory.makeJSON(from: company)</li>
+</ol>
+
+<p>let companies = Company.factory.make(3)
+let JSONArray = Company.factory.makeJSON(from: companies)</p>
+<pre class="highlight plaintext"><code>
+## RealmSeeder
+This submodule can seed some data easily in [Realm](https://github.com/realm/realm-cocoa) Database, using Seeder.
+First of all, define it in your Podfile `pod 'DataFixture/RealmSeeder'`. Then create a new `struct` to define a RealmSeeder.
+```swift
+import DataFixture
+
+struct ExampleSeeder: RealmSeeder {
+    func run(realm: Realm) throws {
+        // Put here your database population
+
+        realm.add(Person(firstName: "Luke"), update: .all) // You can simply create an object and then add in Realm instance.
+        try Dog.factory.create(10, in: realm) // You can easily create 10 fake dogs and then add in Realm instance.
+
+        try realm.seed(AnotherSeeder.self, AnotherAnotherSeeder.self) // To call another seed, please use this function to automatic handling transactions.
+    }
+}
 </code></pre>
 
 <p>To run the <code>ExampleSeeder</code> just call the <strong>seed</strong> function on a Realm instance. This function automatically starts a transaction if needed.</p>
@@ -281,8 +291,8 @@ You can open an issue for problems or suggestions, and you can propose your own 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://twitter.com/a_delfante" target="_blank" rel="external">andreadelfante</a>. All rights reserved. (Last updated: 2020-03-15)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="https://twitter.com/a_delfante" target="_blank" rel="external">andreadelfante</a>. All rights reserved. (Last updated: 2020-11-17)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

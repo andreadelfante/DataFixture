@@ -21,9 +21,9 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          DataFixture Docs
+          DataFixture 2.0.0 Docs
         </a>
-         (94% documented)
+         (91% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -40,7 +40,7 @@
         </p>
     
         <p class="header-col header-col--secondary">
-          <a class="header-link" href="dash-feed://https%3A%2F%2Fandreadelfante%2Egithub%2Eio%2Fdocsets%2FDataFixture%2Exml">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fandreadelfante.github.io%2FDataFixture%2Fdocsets%2FDataFixture.xml">
             <img class="header-icon" src="img/dash.png"/>
             Install in Dash
           </a>
@@ -60,10 +60,10 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/FixtureAttributes.html">FixtureAttributes</a>
+                <a class="nav-group-task-link" href="Classes/FixtureDefinition.html">FixtureDefinition</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/FixtureFactory.html">FixtureFactory</a>
+                <a class="nav-group-task-link" href="Classes/JSONFixtureDefinition.html">JSONFixtureDefinition</a>
               </li>
             </ul>
           </li>
@@ -79,13 +79,19 @@
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/Fixture.html">Fixture</a>
+                <a class="nav-group-task-link" href="Protocols/FixtureFactory.html">FixtureFactory</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FixtureResolver.html">FixtureResolver</a>
+                <a class="nav-group-task-link" href="Protocols/FixtureFactoryable.html">FixtureFactoryable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/JSONFixture.html">JSONFixture</a>
+                <a class="nav-group-task-link" href="Protocols/FixtureMaker.html">FixtureMaker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JSONFixtureFactory.html">JSONFixtureFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/JSONFixtureMaker.html">JSONFixtureMaker</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RealmSeeder.html">RealmSeeder</a>
@@ -93,22 +99,8 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Structs.html">Structures</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/DataFixtureConfig.html">DataFixtureConfig</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/FixtureBuilder.html">FixtureBuilder</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Typealiases.html#/s:11DataFixture5Fakera">Faker</a>
-              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Typealiases.html#/s:11DataFixture5Realma">Realm</a>
               </li>
@@ -133,9 +125,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11DataFixture0B7FactoryC"></a>
-                    <a name="//apple_ref/swift/Class/FixtureFactory" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11DataFixture0B7FactoryC">FixtureFactory</a>
+                    <a name="/s:11DataFixture0B10DefinitionC"></a>
+                    <a name="//apple_ref/swift/Class/FixtureDefinition" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11DataFixture0B10DefinitionC">FixtureDefinition</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -143,17 +135,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This class contains all the model fixture definitions.
-Fixtures provide a convenient way to generate new model instances for testing / seeding your application&rsquo;s database.</p>
+                        <p>It defines a fixture to generate the model.</p>
 
-                        <a href="Classes/FixtureFactory.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/FixtureDefinition.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">FixtureFactory</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">FixtureFactory</span><span class="p">:</span> <span class="kt"><a href="Protocols/FixtureResolver.html">FixtureResolver</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FixtureDefinition</span><span class="o">&lt;</span><span class="kt">Model</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FixtureMaker.html">FixtureMaker</a></span> <span class="k">where</span> <span class="kt">Model</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FixtureFactoryable.html">FixtureFactoryable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -163,9 +153,9 @@ Fixtures provide a convenient way to generate new model instances for testing / 
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11DataFixture0B10AttributesC"></a>
-                    <a name="//apple_ref/swift/Class/FixtureAttributes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11DataFixture0B10AttributesC">FixtureAttributes</a>
+                    <a name="/s:11DataFixture21JSONFixtureDefinitionC"></a>
+                    <a name="//apple_ref/swift/Class/JSONFixtureDefinition" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11DataFixture21JSONFixtureDefinitionC">JSONFixtureDefinition</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -173,17 +163,15 @@ Fixtures provide a convenient way to generate new model instances for testing / 
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A container of attributes, used to override default generation of value.</p>
+                        <p>It defines a fixture to generate the model and the associated JSON.</p>
 
-                        <a href="Classes/FixtureAttributes.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/JSONFixtureDefinition.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">FixtureAttributes</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">FixtureAttributes</span><span class="p">:</span> <span class="kt">Sequence</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">FixtureAttributes</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">JSONFixtureDefinition</span><span class="o">&lt;</span><span class="kt">Model</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/JSONFixtureMaker.html">JSONFixtureMaker</a></span> <span class="k">where</span> <span class="kt">Model</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FixtureFactoryable.html">FixtureFactoryable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -198,8 +186,8 @@ Fixtures provide a convenient way to generate new model instances for testing / 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://twitter.com/a_delfante" target="_blank" rel="external">andreadelfante</a>. All rights reserved. (Last updated: 2020-03-15)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="https://twitter.com/a_delfante" target="_blank" rel="external">andreadelfante</a>. All rights reserved. (Last updated: 2020-11-17)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
