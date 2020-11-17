@@ -1,8 +1,8 @@
 //
-//  RealmSeederTests.swift
+//  Realm+FixtureMakerTests.swift
 //  DataFixture_Tests
 //
-//  Created by Andrea Del Fante on 02/11/2020.
+//  Created by Andrea Del Fante on 11/11/2020.
 //  Copyright © 2020 CocoaPods. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ import DataFixture_RealmSeeder
 import DataFixture
 #endif
 
-class RealmSeederTests: XCTestCase {
+class RealmFixtureMakerTests: XCTestCase {
     private var realm: Realm!
     
     override func setUpWithError() throws {
@@ -30,21 +30,15 @@ class RealmSeederTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testSingleSeeding() {
-        XCTAssertNoThrow(try realm.seed(TestSeeder.self))
+    func testCreateOneObjectInRealm() throws {
+        let dog = try Dog.factory.create(in: realm)
         
-        XCTAssertFalse(realm.isEmpty)
+        XCTAssertNotNil(dog.realm)
     }
     
-    func testNestedSeeding() {
-        XCTAssertNoThrow(try realm.seed(TestNestedSeeder.self))
-        
-        XCTAssertFalse(realm.isEmpty)
-    }
-    
-    func testNestedMoreSeeding() {
-        XCTAssertNoThrow(try realm.seed(TestNestedSeeder.self, TestSeeder.self))
-        
-        XCTAssertFalse(realm.isEmpty)
+    func testCreateManyObjectsInRealm() throws {
+        try Dog.factory.create(50, in: realm).forEach({ (dog) in
+            XCTAssertNotNil(dog.realm)
+        })
     }
 }

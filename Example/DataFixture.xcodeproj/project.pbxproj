@@ -7,16 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6532FA6023CFAF9700D4BF2E /* FixtureFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6532FA5F23CFAF9700D4BF2E /* FixtureFactoryTests.swift */; };
-		6532FA6323CFAFE000D4BF2E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6532FA6223CFAFE000D4BF2E /* Person.swift */; };
-		6532FA6523CFB0CC00D4BF2E /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6532FA6423CFB0CC00D4BF2E /* Dog.swift */; };
-		6532FA6723CFB12300D4BF2E /* TestFixtureFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6532FA6623CFB12300D4BF2E /* TestFixtureFactory.swift */; };
-		6532FA6F23CFD89000D4BF2E /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6532FA6E23CFD89000D4BF2E /* Company.swift */; };
-		659BA83223DA20F900BADAC6 /* TestSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659BA83123DA20F900BADAC6 /* TestSeeder.swift */; };
-		659BA83423DA228D00BADAC6 /* RealmSeederTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659BA83323DA228D00BADAC6 /* RealmSeederTests.swift */; };
-		659BA83623DA267100BADAC6 /* TestNestedSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659BA83523DA267100BADAC6 /* TestNestedSeeder.swift */; };
-		65C18BD323D627A700516B2B /* FixtureBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C18BD223D627A700516B2B /* FixtureBuilderTests.swift */; };
-		65C18BD523D635F900516B2B /* FixtureAttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C18BD423D635F900516B2B /* FixtureAttributesTests.swift */; };
+		651B72CD254CE18900B6071A /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651B72CC254CE18900B6071A /* Dog.swift */; };
+		651B72E7254CE52200B6071A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651B72E6254CE52200B6071A /* Person.swift */; };
+		656149E22555C853002FC2D9 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656149E12555C853002FC2D9 /* Company.swift */; };
+		65680CE6255C55750043395E /* Realm+FixtureMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65680CE5255C55750043395E /* Realm+FixtureMakerTests.swift */; };
+		65B514772550B3AE00058158 /* TestSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B514762550B3AE00058158 /* TestSeeder.swift */; };
+		65B5147B2550B41700058158 /* TestNestedSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5147A2550B41700058158 /* TestNestedSeeder.swift */; };
+		65B5147E2550B45600058158 /* RealmSeederTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5147D2550B45600058158 /* RealmSeederTests.swift */; };
+		65E2123A2555F89700C8806A /* FixtureFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E212392555F89700C8806A /* FixtureFactoryTests.swift */; };
 		848F54C833115A3C212D9999 /* Pods_DataFixture_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB7AEFE52E0B21E9503AB6B /* Pods_DataFixture_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,16 +25,14 @@
 		51695741E82C6D9FACDC4289 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* DataFixture_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataFixture_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6532FA5F23CFAF9700D4BF2E /* FixtureFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureFactoryTests.swift; sourceTree = "<group>"; };
-		6532FA6223CFAFE000D4BF2E /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		6532FA6423CFB0CC00D4BF2E /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
-		6532FA6623CFB12300D4BF2E /* TestFixtureFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFixtureFactory.swift; sourceTree = "<group>"; };
-		6532FA6E23CFD89000D4BF2E /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
-		659BA83123DA20F900BADAC6 /* TestSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSeeder.swift; sourceTree = "<group>"; };
-		659BA83323DA228D00BADAC6 /* RealmSeederTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSeederTests.swift; sourceTree = "<group>"; };
-		659BA83523DA267100BADAC6 /* TestNestedSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNestedSeeder.swift; sourceTree = "<group>"; };
-		65C18BD223D627A700516B2B /* FixtureBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureBuilderTests.swift; sourceTree = "<group>"; };
-		65C18BD423D635F900516B2B /* FixtureAttributesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureAttributesTests.swift; sourceTree = "<group>"; };
+		651B72CC254CE18900B6071A /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
+		651B72E6254CE52200B6071A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		656149E12555C853002FC2D9 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		65680CE5255C55750043395E /* Realm+FixtureMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+FixtureMakerTests.swift"; sourceTree = "<group>"; };
+		65B514762550B3AE00058158 /* TestSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSeeder.swift; sourceTree = "<group>"; };
+		65B5147A2550B41700058158 /* TestNestedSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNestedSeeder.swift; sourceTree = "<group>"; };
+		65B5147D2550B45600058158 /* RealmSeederTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSeederTests.swift; sourceTree = "<group>"; };
+		65E212392555F89700C8806A /* FixtureFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureFactoryTests.swift; sourceTree = "<group>"; };
 		6947041A1153293A2F94D717 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		92158A2C55AD7445094C85AB /* Pods-DataFixture_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataFixture_Tests.debug.xcconfig"; path = "Target Support Files/Pods-DataFixture_Tests/Pods-DataFixture_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,13 +71,12 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6532FA5F23CFAF9700D4BF2E /* FixtureFactoryTests.swift */,
-				659BA83323DA228D00BADAC6 /* RealmSeederTests.swift */,
-				65C18BD123D1010100516B2B /* Misc */,
-				6532FA6123CFAFA400D4BF2E /* Models */,
-				659BA82F23DA20D700BADAC6 /* FixtureFactories */,
-				659BA83023DA20EB00BADAC6 /* Seeders */,
+				65B514752550B3A200058158 /* Seeders */,
+				651B72CB254CE17E00B6071A /* Models */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				65B5147D2550B45600058158 /* RealmSeederTests.swift */,
+				65E212392555F89700C8806A /* FixtureFactoryTests.swift */,
+				65680CE5255C55750043395E /* Realm+FixtureMakerTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -104,40 +99,23 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		6532FA6123CFAFA400D4BF2E /* Models */ = {
+		651B72CB254CE17E00B6071A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6532FA6223CFAFE000D4BF2E /* Person.swift */,
-				6532FA6423CFB0CC00D4BF2E /* Dog.swift */,
-				6532FA6E23CFD89000D4BF2E /* Company.swift */,
+				651B72CC254CE18900B6071A /* Dog.swift */,
+				651B72E6254CE52200B6071A /* Person.swift */,
+				656149E12555C853002FC2D9 /* Company.swift */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		659BA82F23DA20D700BADAC6 /* FixtureFactories */ = {
+		65B514752550B3A200058158 /* Seeders */ = {
 			isa = PBXGroup;
 			children = (
-				6532FA6623CFB12300D4BF2E /* TestFixtureFactory.swift */,
+				65B514762550B3AE00058158 /* TestSeeder.swift */,
+				65B5147A2550B41700058158 /* TestNestedSeeder.swift */,
 			);
-			name = FixtureFactories;
-			sourceTree = "<group>";
-		};
-		659BA83023DA20EB00BADAC6 /* Seeders */ = {
-			isa = PBXGroup;
-			children = (
-				659BA83123DA20F900BADAC6 /* TestSeeder.swift */,
-				659BA83523DA267100BADAC6 /* TestNestedSeeder.swift */,
-			);
-			name = Seeders;
-			sourceTree = "<group>";
-		};
-		65C18BD123D1010100516B2B /* Misc */ = {
-			isa = PBXGroup;
-			children = (
-				65C18BD223D627A700516B2B /* FixtureBuilderTests.swift */,
-				65C18BD423D635F900516B2B /* FixtureAttributesTests.swift */,
-			);
-			name = Misc;
+			path = Seeders;
 			sourceTree = "<group>";
 		};
 		85C93C863699F716EC752BC4 /* Pods */ = {
@@ -191,7 +169,7 @@
 				TargetAttributes = {
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1200;
 					};
 				};
 			};
@@ -278,16 +256,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6532FA6723CFB12300D4BF2E /* TestFixtureFactory.swift in Sources */,
-				6532FA6323CFAFE000D4BF2E /* Person.swift in Sources */,
-				6532FA6523CFB0CC00D4BF2E /* Dog.swift in Sources */,
-				659BA83223DA20F900BADAC6 /* TestSeeder.swift in Sources */,
-				659BA83423DA228D00BADAC6 /* RealmSeederTests.swift in Sources */,
-				6532FA6F23CFD89000D4BF2E /* Company.swift in Sources */,
-				659BA83623DA267100BADAC6 /* TestNestedSeeder.swift in Sources */,
-				6532FA6023CFAF9700D4BF2E /* FixtureFactoryTests.swift in Sources */,
-				65C18BD523D635F900516B2B /* FixtureAttributesTests.swift in Sources */,
-				65C18BD323D627A700516B2B /* FixtureBuilderTests.swift in Sources */,
+				65E2123A2555F89700C8806A /* FixtureFactoryTests.swift in Sources */,
+				65B5147B2550B41700058158 /* TestNestedSeeder.swift in Sources */,
+				65B5147E2550B45600058158 /* RealmSeederTests.swift in Sources */,
+				651B72E7254CE52200B6071A /* Person.swift in Sources */,
+				651B72CD254CE18900B6071A /* Dog.swift in Sources */,
+				65B514772550B3AE00058158 /* TestSeeder.swift in Sources */,
+				65680CE6255C55750043395E /* Realm+FixtureMakerTests.swift in Sources */,
+				656149E22555C853002FC2D9 /* Company.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +373,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 92158A2C55AD7445094C85AB /* Pods-DataFixture_Tests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -409,6 +386,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
@@ -418,6 +396,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48D6FECC77D6BFD454208E54 /* Pods-DataFixture_Tests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
