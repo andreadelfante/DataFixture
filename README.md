@@ -52,7 +52,7 @@ struct CompanyFixtureFactory: FixtureFactory {
 2. Then you can build the model by using its factory.
 ```swift
 // Create a single object of type Company.
-Company.factory.makeJSON()
+Company.factory.make()
 // Create a single object of type Company with no employees.
 Company.factory.empty(name: "EmptyCompany").make()
 
