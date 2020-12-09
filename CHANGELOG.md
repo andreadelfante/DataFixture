@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.1.0
+- **Breaking changes** Now the redefinition methods return the redefined model
+
 ## 2.0.0
 - New fresh DataFixture library.
 
