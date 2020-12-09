@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'DataFixture'
-  s.version          = '2.0.0'
+  s.version          = '2.1.0'
   s.summary          = 'Creation of data model easily, with no headache.'
 
   s.description      = <<-DESC
