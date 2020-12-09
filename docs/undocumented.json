@@ -1,33 +1,33 @@
 {
   "warnings": [
     {
-      "file": "/Users/andrea/Projects/Xcode/DataFixture/DataFixture/Classes/FixtureFactoryable.swift",
+      "file": "/Users/andrea/Projects/ios/lib/DataFixture/DataFixture/Classes/FixtureFactoryable.swift",
       "line": 12,
       "symbol": "FixtureFactoryable.Factory",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/andrea/Projects/Xcode/DataFixture/DataFixture/Classes/Makers/FixtureMaker.swift",
+      "file": "/Users/andrea/Projects/ios/lib/DataFixture/DataFixture/Classes/Makers/FixtureMaker.swift",
       "line": 12,
       "symbol": "FixtureMaker.Model",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/andrea/Projects/Xcode/DataFixture/DataFixture/Classes/Makers/JSONFixtureMaker.swift",
+      "file": "/Users/andrea/Projects/ios/lib/DataFixture/DataFixture/Classes/Makers/JSONFixtureMaker.swift",
       "line": 10,
       "symbol": "JSONFixtureMaker",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/andrea/Projects/Xcode/DataFixture/DataFixture/Classes/Makers/JSONFixtureMaker.swift",
+      "file": "/Users/andrea/Projects/ios/lib/DataFixture/DataFixture/Classes/Makers/JSONFixtureMaker.swift",
       "line": 25,
       "symbol": "JSONFixtureMaker",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/andrea/Projects/Xcode/DataFixture"
+  "source_directory": "/Users/andrea/Projects/ios/lib/DataFixture"
 }
