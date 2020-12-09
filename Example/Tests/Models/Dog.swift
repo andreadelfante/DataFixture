@@ -42,11 +42,13 @@ struct DogFixtureFactory: JSONFixtureFactory {
     func old() -> JSONFixtureDefinition<Dog> {
         redefine { (dog) in
             dog.age = 20
+			
+			return dog
         }
     }
     
     func localeIT() -> FixtureDefinition<Dog> {
-        redefine(locale: "it", { _ in })
+        redefine(locale: "it", { $0 })
     }
     
     func jsonDefinition() -> JSONFixtureDefinition<Dog> {

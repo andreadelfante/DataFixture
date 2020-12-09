@@ -39,13 +39,15 @@ extension FixtureFactory {
     /// - Returns: a new model fixture definition with the specified edits.
     public func redefine(
         locale: String? = Locale.current.languageCode,
-        _ redefinition: @escaping (inout Model) -> Void
+        _ redefinition: @escaping (Model) -> Model
     ) -> FixtureDefinition<Model> {
-        return FixtureRedefinition(
-            locale: locale,
-            definition: definition().definition,
-            redefinition: redefinition
-        )
+		return FixtureDefinition(
+			locale: locale,
+			definition: { (faker) in
+				let model = self.definition().definition(faker)
+				return redefinition(model)
+			}
+		)
     }
 }
 

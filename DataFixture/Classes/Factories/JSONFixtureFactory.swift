@@ -35,7 +35,7 @@ extension JSONFixtureFactory {
     /// - Parameters:
     ///   - redefinition: the redefinition closure.
     /// - Returns: a new JSON model fixture definition with the specified edits.
-    public func redefine(_ redefinition: @escaping (inout Model) -> Void) -> JSONFixtureDefinition<Model> {
+    public func redefine(_ redefinition: @escaping (Model) -> Model) -> JSONFixtureDefinition<Model> {
         return JSONFixtureDefinition(
             fixtureDefinition: redefine(redefinition),
             JSONDefinition: jsonDefinition().JSONDefinition

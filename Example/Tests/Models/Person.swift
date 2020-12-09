@@ -11,21 +11,14 @@ import RealmSwift
 import DataFixture
 
 class Person: Object {
-    @objc dynamic var key: Int = 0
-    @objc dynamic var firstName: String = "" { didSet { generateKey() } }
-    @objc dynamic var lastName: String = "" { didSet { generateKey() } }
+    @objc dynamic var id: Int = 0
+    @objc dynamic var firstName: String = ""
+    @objc dynamic var lastName: String = ""
     @objc dynamic var birthday: Date?
     let dogs = List<Dog>()
     
     override class func primaryKey() -> String? {
-        return "key"
-    }
-    
-    private func generateKey() {
-        var hasher = Hasher()
-        hasher.combine(firstName)
-        hasher.combine(lastName)
-        key = hasher.finalize()
+        return "id"
     }
 }
 
@@ -40,10 +33,15 @@ extension Person: FixtureFactoryable {
 struct PersonFixtureFactory: JSONFixtureFactory {
     typealias Model = Person
     
+	static var id = 0
+	
     func definition() -> FixtureDefinition<Person> {
         define { (faker) in
-            Person(value: [
-                "firstName": faker.name.firstName(),
+			PersonFixtureFactory.id += 1
+			
+            return Person(value: [
+				"id": PersonFixtureFactory.id,
+				"firstName": faker.name.firstName(),
                 "lastName": faker.name.lastName(),
                 "birthday": faker.date.forward(10),
                 "dogs": Dog.factory.make(10)
@@ -56,6 +54,8 @@ struct PersonFixtureFactory: JSONFixtureFactory {
             person.firstName = firstName
             person.lastName = lastName
             person.birthday = birthday
+			
+			return person
         }
     }
     
